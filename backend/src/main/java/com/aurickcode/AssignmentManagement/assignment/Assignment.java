@@ -1,6 +1,6 @@
 package com.aurickcode.AssignmentManagement.assignment;
 
-import com.aurickcode.AssignmentManagement.domain.User;
+import com.aurickcode.AssignmentManagement.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
