@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
+import useLocalStorage from './util/useLocalStorage';
 
 const App = () => {
   
-  const [jwt, setJwt] = useState("");
+  const [jwt, setJwt] = useLocalStorage("", "jwt");
 
   useEffect(() => {
+    console.log("Inside useEffect in App");
     const requestBody = {
       "username": "Anurodh",
       "password": "anurodh123"
@@ -18,19 +20,17 @@ const App = () => {
       method: "post",
       body: JSON.stringify(requestBody)
     });
-  
+    // console.log("jwt: " + jwt);
     promise.then((res) => {
       const jwt = res.headers.get('authorization');
-      console.log(jwt);
+      // console.log(jwt);
+      // localStorage.setItem("jwt", jwt);
       setJwt(jwt);
-  
       res.json().then((data) => {
-        console.log(data);
+        // console.log(data);
       })
     })
-  }, []);
-
-  
+  });
 
   return (
     <div className="App">
