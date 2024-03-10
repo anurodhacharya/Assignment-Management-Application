@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
+import {Routes, Route} from "react-router-dom";
 import './App.css';
 import useLocalStorage from './util/useLocalStorage';
+import Dashboard from './dashboard/dashboard';
+import Homepage from './homepage/homepage';
 
 const App = () => {
   
@@ -20,23 +23,21 @@ const App = () => {
       method: "post",
       body: JSON.stringify(requestBody)
     });
-    // console.log("jwt: " + jwt);
+
     promise.then((res) => {
       const jwt = res.headers.get('authorization');
-      // console.log(jwt);
-      // localStorage.setItem("jwt", jwt);
       setJwt(jwt);
       res.json().then((data) => {
-        // console.log(data);
       })
     })
   });
 
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-      {console.log("Hello World")}
-    </div>
+    <Routes>
+      <Route path='/' element={<Homepage></Homepage>}></Route>
+      <Route path='/dashboard' element={<Dashboard jwt={jwt}></Dashboard>}>
+      </Route>
+    </Routes>
   );
 }
 

@@ -1,1 +1,0 @@
-Assignment Management Application
