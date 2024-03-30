@@ -1,9 +1,9 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import {Routes, Route} from "react-router-dom";
 import './App.css';
-// import useLocalStorage from './util/useLocalStorage';
+import useLocalStorage from './util/useLocalStorage';
 import Dashboard from './dashboard/Dashboard';
-import Homepage from './homepage/Homepage';
+import Homepage from "./homepage/Homepage";
 import ProtectedRoute from './privateroute/ProtectedRoute';
 import { Login } from './login/Login';
 
@@ -28,6 +28,7 @@ const App = () => {
 
   //   promise.then((res) => {
   //     const jwt = res.headers.get('authorization');
+  //     console.log(jwt);
   //     // setJwt(jwt);
   //     localStorage.setItem("jwt", jwt);
   //     res.json().then((data) => {
@@ -35,12 +36,19 @@ const App = () => {
   //   })
   // }, []);
 
+
+  console.log("GAICHH");
+
+
   return (
+    <>
+    {console.log("HIIIIIIIII")}
     <Routes>
       <Route path='/' element={<Homepage />} />
       <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path='/login' element={<Login />} />
     </Routes>
+  </>
   );
 }
 
