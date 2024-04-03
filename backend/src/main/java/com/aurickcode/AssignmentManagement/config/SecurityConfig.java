@@ -41,7 +41,8 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .authorizeRequests()
             .requestMatchers(HttpMethod.POST,
-                            "/api/auth/login"                    
+                            "/api/auth/login"
+                            // "/api/assignments"                    
             )
             .permitAll()
             .anyRequest()

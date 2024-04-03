@@ -19,4 +19,5 @@ public class AuthorityJPADataAccessService implements AuthorityDAO {
     public void registerAuthority(Authority authority) {
         authorityRepository.save(authority);
     }
+
 }

@@ -6,6 +6,7 @@ import Dashboard from './dashboard/Dashboard';
 import Homepage from "./homepage/Homepage";
 import ProtectedRoute from './privateroute/ProtectedRoute';
 import { Login } from './login/Login';
+import { Assignments } from './assignments/Assignments';
 
 const App = () => {
   
@@ -47,6 +48,7 @@ const App = () => {
       <Route path='/' element={<Homepage />} />
       <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path='/login' element={<Login />} />
+      <Route path='/assignments' element={<Assignments />} />
     </Routes>
   </>
   );

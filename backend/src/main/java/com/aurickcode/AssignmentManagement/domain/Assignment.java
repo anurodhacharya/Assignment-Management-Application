@@ -23,9 +23,21 @@ public class Assignment {
 
     @Column
     private String codeReviewVideoUrl;
-
+    
     @ManyToOne(optional = false)
     private User user;
+
+    public Assignment() {
+        
+    }
+
+    public Assignment(String status, String githubUrl, String branch, String codeReviewVideoUrl, User user) {
+        this.status = status;
+        this.githubUrl = githubUrl;
+        this.branch = branch;
+        this.codeReviewVideoUrl = codeReviewVideoUrl;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
@@ -66,6 +78,4 @@ public class Assignment {
     public void setCodeReviewVideoUrl(String codeReviewVideoUrl) {
         this.codeReviewVideoUrl = codeReviewVideoUrl;
     }
-
-    
 }
