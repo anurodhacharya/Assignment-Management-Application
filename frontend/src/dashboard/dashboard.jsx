@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getAssignments, submitAssignment } from '../util/client';
+import { getAssignments, createAssignment } from '../util/client';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Dashboard = ({jwt}) => {
 
@@ -9,10 +9,10 @@ const Dashboard = ({jwt}) => {
 
     const [assignments, setAssignments] = useState([]);
 
-    if(assignments.length == 0) {
-        console.log("Loading");
-        <h1>Loading</h1>
-    }
+    // if(assignments.length == 0) {
+    //     console.log("Loading");
+    //     <h1>Loading</h1>
+    // }
 
     const fetchAssignments = () => {
         getAssignments().then((res) => {
@@ -33,15 +33,15 @@ const Dashboard = ({jwt}) => {
 
     let navigate = useNavigate();
 
-    const submitNewAssignment = () => {
-        let assignment = {
-            status: "active",
-            githubUrl: "https://abc.com",
-            branch: "main",
-            codeReviewUrl: "http://myassignment.com"
-        };
+    const createNewAssignment = () => {
+        // let assignment = {
+        //     status: "active",
+        //     // githubUrl: "https://abc.com",
+        //     // branch: "main",
+        //     // codeReviewUrl: "http://myassignment.com"
+        // };
 
-        submitAssignment(assignment).then((res) => {
+        createAssignment().then((res) => {
             console.log(res.data);
             navigate(`/assignments/${res.data.id}`);
 
@@ -53,16 +53,17 @@ const Dashboard = ({jwt}) => {
     return (
         <>
         <div>
-            <button onClick={submitNewAssignment}>Submit New Assignment</button>
+            <button onClick={createNewAssignment}>Submit New Assignment</button>
         </div>
         <table border={1}>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Status</th>
+                    {/* <th>Status</th> */}
                     <th>Github URL</th>
-                    <th>Branch</th>
-                    <th>Code Review Video URL</th>
+                    {/* <th>Branch</th> */}
+                    {/* <th>Code Review Video URL</th> */}
+                    <th>Link</th>
                 </tr>
             </thead>
             {
@@ -70,10 +71,11 @@ const Dashboard = ({jwt}) => {
                     <tbody>
                         <tr>
                             <td>{obj.id}</td>
-                            <td>{obj.status}</td>
+                            {/* <td>{obj.status}</td> */}
                             <td>{obj.githubUrl}</td>
-                            <td>{obj.branch}</td>
-                            <td>{obj.codeReviewVideoUrl}</td>
+                            {/* <td>{obj.branch}</td> */}
+                            {/* <td>{obj.codeReviewVideoUrl}</td> */}
+                            <td><Link to={`/assignments/${obj.id}`}>Assignment</Link></td>
                         </tr>
                     </tbody>
                 )) 

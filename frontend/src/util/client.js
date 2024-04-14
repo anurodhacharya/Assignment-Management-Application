@@ -9,9 +9,9 @@ export const login = async (data) => {
     }
 }
 
-export const submitAssignment = async (assignment) => {
+export const createAssignment = async () => {
     try {
-        const response = await axios.post("http://localhost:8080/api/assignments", assignment,
+        const response = await axios.post("http://localhost:8080/api/assignments", null,
                 {
                     headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -37,3 +37,30 @@ export const getAssignments = async () => {
     }
 }
 
+export const getAssignment = async (id) => {
+    try {
+        const response = await axios.get(`http://localhost:8080/api/assignments/${id}`,
+                {
+                    headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+            });
+        return response;
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const saveAssignment = async (assignment, id) => {
+    try {
+        const response = await axios.post(`http://localhost:8080/api/assignments/${id}`, assignment,
+                {
+                    headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+            });
+        return response;
+    } catch (e) {
+        throw e;
+    }
+}

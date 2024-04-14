@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +29,9 @@ public class AssignmentController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> submitAssignment(@RequestBody AssignmentDTO assignmentDTO,
-                                @AuthenticationPrincipal User user
+    public ResponseEntity<?> createAssignment(@AuthenticationPrincipal User user
     ) {
-        Assignment assignment = assignmentService.saveAssignment(assignmentDTO, user);
+        Assignment assignment = assignmentService.createNewAssignment(user);
         return ResponseEntity.ok().body(assignment);
     }
 
@@ -39,5 +39,19 @@ public class AssignmentController {
     public ResponseEntity<?> getAssignments(@AuthenticationPrincipal User user) {
         List<Assignment> assignments = assignmentService.getAssignments(user);
         return ResponseEntity.ok().body(assignments);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<?> getAssignment(
+                                    @PathVariable("id") Long userId
+    ) {
+        Assignment assignment = assignmentService.getAssignment(userId);
+        return ResponseEntity.ok().body(assignment);
+    }
+
+    @PostMapping("{id}")
+    public ResponseEntity<?> saveAssignent(@PathVariable("id") Long assignmentId, @RequestBody AssignmentDTO assignmentDTO) {
+        Assignment assignment = assignmentService.saveAssignment(assignmentId, assignmentDTO);
+        return ResponseEntity.ok(assignment);
     }
 }

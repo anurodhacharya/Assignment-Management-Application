@@ -32,24 +32,32 @@ public class AssignmentService {
         this.userDAO = userDAO;
     }
 
-    public Assignment saveAssignment(AssignmentDTO assignmentDTO, User user) {
+    public Assignment createNewAssignment(User user) {
 
         // String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         // User user = userDAO.getUser(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         
-        Assignment assignment = new Assignment(
-            assignmentDTO.status(),
-            assignmentDTO.githubUrl(),
-            assignmentDTO.branch(),
-            assignmentDTO.codeReviewUrl(),
-            user
-        );
+        Assignment assignment = new Assignment();
+        assignment.setStatus("Needs to be submitted");
+        assignment.setUser(user);
 
-        return assignmentDAO.saveAssignment(assignment);
+        return assignmentDAO.createAssignment(assignment);
     }
 
     public List<Assignment> getAssignments(User user) {
         return assignmentDAO.getAllAssignments(user);
+    }
+
+    public Assignment getAssignment(Long userId) {
+        return assignmentDAO.getAssignment(userId).get();
+    }
+
+    public Assignment saveAssignment(Long assignmentId, AssignmentDTO assignmentDTO) {
+        Assignment assignment = assignmentDAO.getAssignment(assignmentId).get();
+        assignment.setGithubUrl(assignmentDTO.githubUrl());
+        assignment.setBranch(assignmentDTO.branch());
+        assignment.setStatus("Submitted");
+        return assignmentDAO.saveAssignment(assignment);
     }
 }

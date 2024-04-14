@@ -75,6 +75,14 @@ public class Assignment {
         return codeReviewVideoUrl;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setCodeReviewVideoUrl(String codeReviewVideoUrl) {
         this.codeReviewVideoUrl = codeReviewVideoUrl;
     }
