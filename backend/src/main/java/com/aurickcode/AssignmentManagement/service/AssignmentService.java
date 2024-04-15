@@ -49,8 +49,8 @@ public class AssignmentService {
         return assignmentDAO.getAllAssignments(user);
     }
 
-    public Assignment getAssignment(Long userId) {
-        return assignmentDAO.getAssignment(userId).get();
+    public Assignment getAssignment(Long assignmentId) {
+        return assignmentDAO.getAssignment(assignmentId).get();
     }
 
     public Assignment saveAssignment(Long assignmentId, AssignmentDTO assignmentDTO) {

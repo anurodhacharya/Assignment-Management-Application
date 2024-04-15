@@ -43,9 +43,9 @@ public class AssignmentController {
 
     @GetMapping("{id}")
     public ResponseEntity<?> getAssignment(
-                                    @PathVariable("id") Long userId
+                                    @PathVariable("id") Long assignmentId
     ) {
-        Assignment assignment = assignmentService.getAssignment(userId);
+        Assignment assignment = assignmentService.getAssignment(assignmentId);
         return ResponseEntity.ok().body(assignment);
     }
 

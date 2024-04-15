@@ -29,8 +29,8 @@ public class AssignmentJPADataAccessService implements AssignmentDAO {
     }
 
     @Override
-    public Optional<Assignment> getAssignment(Long userId) {
-        return assignmentRepository.findById(userId);
+    public Optional<Assignment> getAssignment(Long assignmentId) {
+        return assignmentRepository.findById(assignmentId);
     }
 
     @Override

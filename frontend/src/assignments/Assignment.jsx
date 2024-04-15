@@ -18,9 +18,11 @@ export const Assignment = () => {
     const getUserAssignment = () => {
         getAssignment(id).then(res => {
             const receivedAssignment = res.data;
+            console.log(res);
             setgithubUrl(res.data.githubUrl);
             setBranch(res.data.branch);
         }).catch(err => {
+            console.log("Error");
             console.log(err);
         })
     }
