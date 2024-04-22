@@ -2,6 +2,7 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom"
 import { login } from "../util/client";
 import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 
 export const Login = () => {
 
@@ -44,23 +45,69 @@ export const Login = () => {
 
     return (
         <>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input type="email" id="username" value={username} onChange={handleUsernameChange}></input>
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" value={password} onChange={handlePasswordChange}></input>
-            </div>
+        <Container className='mt-4'>
+            {/* <Row> */}
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="fs-4">Username</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" value={username} onChange={handleUsernameChange} />
+                {/* <Col>
+                    <div>
+                        <label htmlFor="username">Username</label>
+                        <input type="email" id="username" value={username} onChange={handleUsernameChange}></input>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" value={password} onChange={handlePasswordChange}></input>
+                    </div>
+                </Col> */}
+            </Form.Group>
+            {/* </Row> */}
+            {/* <Row> */}
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="fs-4">Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+            </Form.Group>
+            {/* </Row> */}
 
-
-            <button type="submit" onClick={submitForm}>Submit</button>
-            <p>Your entered username: {username}</p>
-            <p>Your entered password: {password}</p>
+            {/* <Row> */}
+                {/* <Col> */}
+                    <Button size="lg" type="submit" onClick={submitForm} variant="primary">Login</Button>
+                {/* </Col> */}
+            {/* </Row> */}
+            {/* <p>Your entered username: {username}</p> */}
+            {/* <p>Your entered password: {password}</p> */}
 
             {/* <button onClick={navigateMe}>Navigate</button> */}
             
+        </Container>
+
+        {/* <div className="container">
+            <div className="row">
+                <div className="col">
+                    <div>
+                        <label htmlFor="username">Username</label>
+                        <input type="email" id="username" value={username} onChange={handleUsernameChange}></input>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" value={password} onChange={handlePasswordChange}></input>
+                    </div>
+                </div>
+            <div className="col">Hi</div>
+        </div> */}
+
+
+
+        {/* <Button type="submit" onClick={submitForm}>Submit</Button> */}
+        {/* <p>Your entered username: {username}</p> */}
+        {/* <p>Your entered password: {password}</p> */}
+
+        {/* <button onClick={navigateMe}>Navigate</button> */}
+
+        {/* </div> */}
         </>
+
+
     )
 }
 
