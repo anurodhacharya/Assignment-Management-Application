@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAssignments, createAssignment } from '../util/client';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
 const Dashboard = ({jwt}) => {
 
@@ -53,7 +54,7 @@ const Dashboard = ({jwt}) => {
     return (
         <>
         <div>
-            <button onClick={createNewAssignment}>Submit New Assignment</button>
+            <button onClick={createNewAssignment}>Create New Assignment</button>
         </div>
         <table border={1}>
             <thead>
@@ -81,6 +82,27 @@ const Dashboard = ({jwt}) => {
                 )) 
             }
             </table>
+            
+
+            {
+                assignments.map((obj, key) => (
+                
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>Assignment #{obj.id}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{obj.status}</Card.Subtitle>
+                        <Card.Text>
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                        </Card.Text>
+                        <Card.Link href={obj.githubUrl}>Github URL</Card.Link>
+                        <Card.Link href="#">Another Link</Card.Link>
+                    </Card.Body>
+                </Card>
+                )) 
+            }
+            
+            
         </>
     );
 };
