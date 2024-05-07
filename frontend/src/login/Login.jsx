@@ -46,34 +46,42 @@ export const Login = () => {
     return (
         <>
         <Container className='mt-4'>
-            {/* <Row> */}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="fs-4">Username</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" value={username} onChange={handleUsernameChange} />
-                {/* <Col>
-                    <div>
-                        <label htmlFor="username">Username</label>
-                        <input type="email" id="username" value={username} onChange={handleUsernameChange}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" value={password} onChange={handlePasswordChange}></input>
-                    </div>
-                </Col> */}
-            </Form.Group>
-            {/* </Row> */}
-            {/* <Row> */}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="fs-4">Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-            </Form.Group>
-            {/* </Row> */}
+            <Row>
+                <Col md="6">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="fs-4">Username</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" value={username} onChange={handleUsernameChange} />
+                        {/* <Col>
+                            <div>
+                                <label htmlFor="username">Username</label>
+                                <input type="email" id="username" value={username} onChange={handleUsernameChange}></input>
+                            </div>
+                            <div>
+                                <label htmlFor="password">Password</label>
+                                <input type="password" id="password" value={password} onChange={handlePasswordChange}></input>
+                            </div>
+                        </Col> */}
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col md="6">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="fs-4">Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                    </Form.Group>
+                </Col>
+            </Row>
 
-            {/* <Row> */}
-                {/* <Col> */}
+            <Row>
+                <Col className="mt-2 d-flex flex-column gap-3 flex-md-row justify-content-between">
                     <Button size="lg" type="submit" onClick={submitForm} variant="primary">Login</Button>
-                {/* </Col> */}
-            {/* </Row> */}
+                    <Button size="lg" type="submit" onClick={submitForm} variant="secondary">Exit</Button>
+                </Col>
+                {/* <Col>
+                    Hi
+                </Col> */}
+            </Row>
             {/* <p>Your entered username: {username}</p> */}
             {/* <p>Your entered password: {password}</p> */}
 
