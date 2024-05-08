@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom"
 import { getAssignment, saveAssignment } from "../util/client";
+import { Button } from "react-bootstrap";
 
 export const Assignment = () => {
 
@@ -19,6 +20,7 @@ export const Assignment = () => {
         getAssignment(id).then(res => {
             const receivedAssignment = res.data;
             console.log(res);
+            setAssignment(res.data);
             setgithubUrl(res.data.githubUrl);
             setBranch(res.data.branch);
         }).catch(err => {
@@ -30,12 +32,12 @@ export const Assignment = () => {
     useEffect(getUserAssignment, []);
 
     const submitAssignment = () => {
-        const assignment = {
+        const assignmentUpdate = {
             'githubUrl': githubUrl,
             'branch': branch
         };
 
-        saveAssignment(assignment, id).then((res) => {
+        saveAssignment(assignmentUpdate, id).then((res) => {
             console.log(res.data);
             navigate('/dashboard');
 
@@ -48,8 +50,24 @@ export const Assignment = () => {
 
     return (
         <>
-            <h1>Assignment</h1>
-            <h3>
+        <div className="container mb-5 mt-3">
+                <h3>Enter Assignment Details</h3>
+                <span class={`badge bg-${assignment.status === 'Submitted' ? 'success' : 'warning'}`}>{assignment.status}</span>
+                <div className="row form-group mt-3 mb-3">
+                    <label className="h6" for="githubUrl">Github URL</label>
+                    <input className="form-control" type="url" placeholder="https://github.com/username/repo-name" id="githubUrl" value={githubUrl} onChange={(event) => {
+                        setgithubUrl(event.target.value)
+                    }}/>
+                </div>
+                <div className="row form-group mb-3">
+                    <label className="h6" for="branch">Branch</label>
+                    <input className="form-control" type="text" placeholder="Enter the Branch" id="branch" value={branch} onChange={(event) => {
+                    setBranch(event.target.value);
+                }}/>
+                </div>
+                <Button size="md" onClick={submitAssignment}>Submit Assignment</Button>
+            </div>
+            {/* <h3>
                 Github URL: <input type="text" id="githubUrl" value={githubUrl} onChange={(event) => {
                     // console.log(event.target.value);
                     setgithubUrl(event.target.value);
@@ -61,8 +79,7 @@ export const Assignment = () => {
                 Branch: <input type="text" id="branch" value={branch} onChange={(event) => {
                     setBranch(event.target.value);
                 }}></input>
-            </h3>
-            <button onClick={submitAssignment}>Submit Assignment</button>
+            </h3> */}
         </>
     )
 }
