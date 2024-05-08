@@ -3,6 +3,7 @@ import { getAssignments, createAssignment } from '../util/client';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
 const Dashboard = ({jwt}) => {
 
@@ -17,8 +18,8 @@ const Dashboard = ({jwt}) => {
 
     const fetchAssignments = () => {
         getAssignments().then((res) => {
-            console.log("Success");
-            console.log(res.data);
+            // console.log("Success");
+            // console.log(res.data);
             setAssignments(res.data);
         }).catch(() => {
             console.log("Error");
@@ -43,7 +44,7 @@ const Dashboard = ({jwt}) => {
         // };
 
         createAssignment().then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             navigate(`/assignments/${res.data.id}`);
 
         }).catch((e) => {
@@ -53,55 +54,39 @@ const Dashboard = ({jwt}) => {
 
     return (
         <>
-        <div>
-            <button onClick={createNewAssignment}>Create New Assignment</button>
-        </div>
-        <table border={1}>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    {/* <th>Status</th> */}
-                    <th>Github URL</th>
-                    {/* <th>Branch</th> */}
-                    {/* <th>Code Review Video URL</th> */}
-                    <th>Link</th>
-                </tr>
-            </thead>
-            {
-                assignments.map((obj, key) => (
-                    <tbody>
-                        <tr>
-                            <td>{obj.id}</td>
-                            {/* <td>{obj.status}</td> */}
-                            <td>{obj.githubUrl}</td>
-                            {/* <td>{obj.branch}</td> */}
-                            {/* <td>{obj.codeReviewVideoUrl}</td> */}
-                            <td><Link to={`/assignments/${obj.id}`}>Assignment</Link></td>
-                        </tr>
-                    </tbody>
-                )) 
-            }
-            </table>
-            
 
-            {
-                assignments.map((obj, key) => (
-                
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title>Assignment #{obj.id}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{obj.status}</Card.Subtitle>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
-                        <Card.Link href={obj.githubUrl}>Github URL</Card.Link>
-                        <Card.Link href="#">Another Link</Card.Link>
-                    </Card.Body>
-                </Card>
-                )) 
-            }
-            
+        <div className='mb-4' style={{margin: '2em'}}>
+            <Button size='lg' onClick={createNewAssignment}>Create New Assignment</Button>
+        </div>
+
+            {/* <Container> */}
+                {/* <Row> */}
+                <div>
+                    <div className='d-grid gap-5' style={{gridTemplateColumns: 'repeat(auto-fit, 18rem'}}>
+
+                    {
+                        assignments.map((obj, key) => (
+                            <Col style={{ width: '18rem', marginTop: '12px'}}>
+                                <Card className='h-100' style={{ width: '18rem', marginTop: '10px' }}>
+                                <Card.Body className='d-flex flex-column justify-content-spacing'>
+                                    <Card.Title>Assignment #{obj.id}</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">{obj.status}</Card.Subtitle>
+                                    <Card.Text>
+                                    Github URL: {obj.githubUrl}
+                                    </Card.Text>
+                                    {/* <Card.Link href={obj.githubUrl}>Github URL</Card.Link> */}
+                                    <Button variant='secondary' onClick={() => {
+                                        navigate(`/assignments/${obj.id}`)
+                                    }}>Edit Assignment</Button>
+                                </Card.Body>
+                                </Card>
+                            </Col>       
+                        )) 
+                    }
+                    </div>
+                    </div>
+                {/* </Row> */}
+             {/* </Container> */}
             
         </>
     );
